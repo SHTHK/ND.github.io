@@ -116,7 +116,7 @@
         affiliation: '오페라 하우스',
         appearance: '179cm. 옷을 대충 입어서 매번 카논에게 혼난다. 머리는 정리가 안 되어 있지만, 나름 반묶음으로 꾸몄다. 정리 안 하는 게 남성미라나 뭐라나...',
         personality: '가볍고 껄렁한 욜로족. 하지만 예의를 지킬 때는 지키는 편이며, 제법 착하다. 의외로 부끄러움이 많은 편이다.',
-        features: '게임을 좋아하는 너드다. 선천적 쇼트 슬리퍼로, 자주 밤을 새서 게임 한다. 한국-영국 혼혈.',
+        features: '게임을 좋아하는 너드다. 선천적 쇼트 슬리퍼로, 밤을 새서 게임할 수 있다. 한국-영국 혼혈.',
         listImage: 'SC_TN.png',
         profileImage: 'scherzo_cowboyshot.png'
       },
@@ -141,8 +141,8 @@
         role: '비르투오소(샷건)',
         affiliation: '오페라 하우스',
         appearance: '160cm. 오바드와 마찬가지로 앳된 외모이다. 매번 뚱한 표정을 짓고 있다.',
-        personality: '틱틱대지만 사려 깊고 걱정이 많다. 오빠로서 강해보이고 싶어한다.',
-        features: '팀의 지력 담당이라고 할 수 있다. 오바드의 쌍둥이 오빠로, 시스콤 기질이 있다. 공포 영화를 좋아한다.',
+        personality: '틱틱대지만 사려 깊고 걱정이 많다. 오바드의 오빠로서 강해보이고 싶어한다.',
+        features: '팀의 지력 담당이라고 할 수 있다. 오바드의 쌍둥이 오빠로, 시스콤 기질이 있다. 공포 영화를 좋아한다. ',
         listImage: 'NT_TN.png',
         profileImage: 'nocturne_cowboyshot.png'
       },
@@ -347,8 +347,8 @@
       container.innerHTML = `
         <div class="w-full min-h-screen flex flex-col md:flex-row animate-fade-in">
           <!-- Left: Image (Sticky on Desktop) -->
-          <div class="w-full md:w-2/5 lg:w-1/2 shrink-0 border-b md:border-b-0 md:border-r border-noir-border bg-black md:sticky md:top-0 md:h-screen">
-            <img src="${char.profileImage}" alt="${char.name}" class="w-full h-full object-cover" />
+          <div class="w-full md:w-2/5 lg:w-1/2 shrink-0 border-b md:border-b-0 md:border-r border-noir-border bg-black md:sticky md:top-0 md:h-screen flex items-center justify-center">
+            <img src="${char.profileImage}" alt="${char.name}" class="w-full h-auto md:h-full object-contain aspect-[2/3] md:aspect-auto" />
           </div>
           
           <!-- Right: Content (Scrollable) -->
