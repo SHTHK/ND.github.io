@@ -86,8 +86,8 @@
     </main>
   </div>
 
-  <!-- Modal Container -->
-  <div id="modal-container" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/90 backdrop-blur-sm">
+  <!-- Modal Container (Full Screen) -->
+  <div id="modal-container" class="hidden fixed inset-0 z-50 bg-noir-bg overflow-y-auto">
     <!-- JS will inject modal content here -->
   </div>
 
@@ -141,8 +141,8 @@
         role: '비르투오소(샷건)',
         affiliation: '오페라 하우스',
         appearance: '160cm. 오바드와 마찬가지로 앳된 외모이다. 매번 뚱한 표정을 짓고 있다.',
-        personality: '틱틱대지만 사려 깊고 걱정이 많다. 오바드의 오빠로서 강해보이고 싶어한다.',
-        features: '팀의 지력 담당이라고 할 수 있다. 오바드의 쌍둥이 오빠로, 시스콤 기질이 있다. 공포 영화를 좋아한다. ',
+        personality: '틱틱대지만 사려 깊고 걱정이 많다. 오빠로서 강해보이고 싶어한다.',
+        features: '팀의 지력 담당이라고 할 수 있다. 오바드의 쌍둥이 오빠로, 시스콤 기질이 있다. 공포 영화를 좋아한다.',
         listImage: 'NT_TN.png',
         profileImage: 'nocturne_cowboyshot.png'
       },
@@ -345,44 +345,51 @@
 
       const container = document.getElementById('modal-container');
       container.innerHTML = `
-        <div class="bg-noir-card border border-noir-border w-full max-w-5xl max-h-[90vh] overflow-y-auto flex flex-col md:flex-row shadow-2xl animate-fade-in">
-          <div class="w-full md:w-2/5 shrink-0 border-b md:border-b-0 md:border-r border-noir-border bg-black">
-            <img src="${char.profileImage}" alt="${char.name}" class="w-full h-full object-cover aspect-[2/3]" />
+        <div class="w-full min-h-screen flex flex-col md:flex-row animate-fade-in">
+          <!-- Left: Image (Sticky on Desktop) -->
+          <div class="w-full md:w-2/5 lg:w-1/2 shrink-0 border-b md:border-b-0 md:border-r border-noir-border bg-black md:sticky md:top-0 md:h-screen">
+            <img src="${char.profileImage}" alt="${char.name}" class="w-full h-full object-cover" />
           </div>
-          <div class="p-8 md:p-12 flex-1 flex flex-col relative">
-            <button onclick="closeModalWithHistory()" class="absolute top-6 right-6 text-noir-muted hover:text-white transition-colors cursor-pointer">
+          
+          <!-- Right: Content (Scrollable) -->
+          <div class="p-8 md:p-16 lg:p-24 flex-1 flex flex-col relative">
+            <!-- Close Button -->
+            <button onclick="closeModalWithHistory()" class="fixed top-6 right-6 md:top-10 md:right-10 z-50 bg-noir-card/80 backdrop-blur border border-noir-border p-3 rounded-full text-noir-muted hover:text-white hover:bg-noir-border transition-all cursor-pointer shadow-xl">
               <i data-lucide="x" class="w-6 h-6"></i>
             </button>
-            <div class="mb-10 mt-4">
-              <p class="text-noir-accent font-serif tracking-[0.2em] uppercase text-sm mb-3">${char.affiliation}</p>
-              <h2 class="font-serif text-4xl md:text-5xl text-white tracking-wide">${char.name}</h2>
+            
+            <div class="mb-12 mt-4 md:mt-0 pr-12">
+              <p class="text-noir-accent font-serif tracking-[0.2em] uppercase text-sm mb-4">${char.affiliation}</p>
+              <h2 class="font-serif text-5xl md:text-7xl text-white tracking-wide leading-tight">${char.name}</h2>
             </div>
-            <div class="grid grid-cols-3 gap-6 mb-10 border-y border-noir-border py-6">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-16 border-y border-noir-border py-10">
               <div>
-                <p class="text-noir-muted text-xs uppercase tracking-[0.15em] mb-2 font-serif">Gender</p>
-                <p class="font-sans text-lg text-white font-light">${char.gender}</p>
+                <p class="text-noir-muted text-xs uppercase tracking-[0.15em] mb-3 font-serif">Gender</p>
+                <p class="font-sans text-xl text-white font-light">${char.gender}</p>
               </div>
               <div>
-                <p class="text-noir-muted text-xs uppercase tracking-[0.15em] mb-2 font-serif">Age</p>
-                <p class="font-sans text-lg text-white font-light">${char.age}</p>
+                <p class="text-noir-muted text-xs uppercase tracking-[0.15em] mb-3 font-serif">Age</p>
+                <p class="font-sans text-xl text-white font-light">${char.age}</p>
               </div>
               <div>
-                <p class="text-noir-muted text-xs uppercase tracking-[0.15em] mb-2 font-serif">Role</p>
-                <p class="font-sans text-lg text-white font-light">${char.role}</p>
+                <p class="text-noir-muted text-xs uppercase tracking-[0.15em] mb-3 font-serif">Role</p>
+                <p class="font-sans text-xl text-white font-light">${char.role}</p>
               </div>
             </div>
-            <div class="space-y-8">
+            
+            <div class="space-y-12 max-w-3xl">
               <section>
-                <h3 class="text-noir-muted text-xs uppercase tracking-[0.15em] mb-3 border-b border-noir-border pb-2 font-serif">Appearance</h3>
-                <p class="font-sans text-base leading-relaxed font-light text-noir-text">${char.appearance}</p>
+                <h3 class="text-noir-muted text-sm uppercase tracking-[0.2em] mb-4 border-b border-noir-border pb-3 font-serif">Appearance</h3>
+                <p class="font-sans text-lg leading-relaxed font-light text-noir-text whitespace-pre-line">${char.appearance}</p>
               </section>
               <section>
-                <h3 class="text-noir-muted text-xs uppercase tracking-[0.15em] mb-3 border-b border-noir-border pb-2 font-serif">Personality</h3>
-                <p class="font-sans text-base leading-relaxed font-light text-noir-text">${char.personality}</p>
+                <h3 class="text-noir-muted text-sm uppercase tracking-[0.2em] mb-4 border-b border-noir-border pb-3 font-serif">Personality</h3>
+                <p class="font-sans text-lg leading-relaxed font-light text-noir-text whitespace-pre-line">${char.personality}</p>
               </section>
               <section>
-                <h3 class="text-noir-muted text-xs uppercase tracking-[0.15em] mb-3 border-b border-noir-border pb-2 font-serif">Features</h3>
-                <p class="font-sans text-base leading-relaxed font-light text-noir-text">${char.features}</p>
+                <h3 class="text-noir-muted text-sm uppercase tracking-[0.2em] mb-4 border-b border-noir-border pb-3 font-serif">Features</h3>
+                <p class="font-sans text-lg leading-relaxed font-light text-noir-text whitespace-pre-line">${char.features}</p>
               </section>
             </div>
           </div>
